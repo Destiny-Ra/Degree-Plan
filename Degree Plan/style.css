@@ -1,0 +1,64 @@
+ 
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    
+}
+ 
+header {
+    width: 100%;
+    padding: 20px;
+    background-color: #877b7b;
+    color: #fff;
+    display: flex;
+    align-items: center;
+}
+ 
+.nav-header-main ul {
+    list-style:none;
+    display: flex;
+}
+ 
+.nav-header-main ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+ 
+.header-login {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+ 
+.header-login form,
+.header-login .header-signup {
+    display: inline;
+}
+ 
+.header-login input[type="text"],
+.header-login input[type="password"] {
+    padding: 5px;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+}
+ 
+.header-login button,
+.header-login a.header-signup {
+    background-color: #645b5b;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+ 
+    text-decoration: none;
+   
+}
+ 
+.header-login button[name="logout-submit"] {
+    background-color: #555;
+}
+ 
+ 
