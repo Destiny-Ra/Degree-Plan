@@ -10,23 +10,42 @@ body {
  
 header {
     width: 100%;
-    padding: 20px;
-    background-color: #877b7b;
+    padding: 30px;
     background-image: linear-gradient(to right, #FFFFFF, #FF7523);
     color: #fff;
     display: flex;
     align-items: center;
 }
- 
-.nav-header-main ul {
+
+nav{
+    margin: 15px;
+}
+
+nav ul {
     list-style:none;
     display: flex;
+    background-color: #000000;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 10px;
+}
+
+nav ul li{
+    float: left;
+    margin: 10px;
 }
  
-.nav-header-main ul li a {
+nav ul li a {
+    cursor: pointer;
+    display: block;
+    border-radius: 8px;
+    padding: 10px 24px;
+    background-color: #E15503;
     color: white;
     text-decoration: none;
-    padding: 10px;
+}
+nav ul li a:hover {
+    background-color:#E97734;
 }
  
 .header-login {
@@ -62,5 +81,15 @@ header {
 .header-login button[name="logout-submit"] {
     background-color: #555;
 }
- 
+
+footer{
+    background-color: #000000;
+    color: white; 
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+}
  
