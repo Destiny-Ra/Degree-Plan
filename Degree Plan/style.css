@@ -31,10 +31,9 @@ nav ul {
 }
 
 nav ul li{
-    float: left;
     margin: 10px;
 }
- 
+
 nav ul li a {
     cursor: pointer;
     display: block;
@@ -62,13 +61,13 @@ nav ul li a:hover {
 .header-login input[type="text"],
 .header-login input[type="password"] {
     padding: 5px;
-    border: 1px solid #e6e6e6;
+    border: 1px solid #7B6F65;
     border-radius: 5px;
 }
  
 .header-login button,
 .header-login a.header-signup {
-    background-color: #645b5b;
+    background-color: #E15503;
     color: white;
     padding: 5px 10px;
     border: none;
@@ -79,7 +78,7 @@ nav ul li a:hover {
 }
  
 .header-login button[name="logout-submit"] {
-    background-color: #555;
+    background-color: #E15503;
 }
 
 footer{
