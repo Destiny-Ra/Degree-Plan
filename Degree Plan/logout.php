@@ -8,5 +8,5 @@ $logout_url = sprintf(
     'https://%s/v2/logout?client_id=%s&returnTo=%s',
     'dev-muvbzhy1gdnjum2r.us.auth0.com',
     'pDChAGpnmKNqBhd5ZQqekijFBJXVyOzU',
-    urlencode('http:localhost:8000/index.php')
+    urlencode('http:127.0.0.1:3000/index.php')
 );
