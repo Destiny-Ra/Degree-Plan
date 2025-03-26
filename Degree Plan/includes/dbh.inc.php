@@ -1,15 +1,17 @@
 <?php
   
 $servername = "localhost";
-$dBUsername = "root"; 
-$dBPassword = "";
-$dBName = "loginsystemtut"; 
+$username = "root"; 
+$password = "$";
+$dBName = "courses_database"; 
 
 
-$conn = mysqli_connect($servername, $dBUsername, $dBPassword, $dBName);
+$conn = mysqli($servername, $username, $password, $dBName);
 
-
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
+
+echo "Connected to database using MySQLi";
+
 ?>
