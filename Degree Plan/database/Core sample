@@ -1,0 +1,26 @@
+-- Create a table to store course details
+CREATE TABLE courses (
+    course_id INT PRIMARY KEY AUTO_INCREMENT,
+    course_name VARCHAR(255),
+    course_code VARCHAR(20),
+    credit_hours INT
+);
+
+-- Insert courses into the table
+INSERT INTO courses (course_name, course_code, credit_hours)
+VALUES
+    ('Composition I', 'ENGL 1301', 3),
+    ('History of the US to 1877', 'HIST 1301', 3),
+    ('Precalculus', 'MATH 2412', 4),
+    ('Creative Arts', 'Creative Arts', 3),
+    ('Honors Freshman Seminar I', 'UNIV 1301', 3)
+    ('Composition II', 'ENGL 1302', 3),
+    ('History of the US since 1877', 'HIST 1302', 3),
+    ('Calculus I', 'MATH 2413', 4),
+    ('Social and Behavioral Science', 'Social and Behavioral Science', 3),
+    ('American National Politics', 'LSC 2305', 3),
+    ('Calculus II', 'MATH 2414', 4),
+    ('State and Local Politics', 'PLSC 2306', 3),
+    ('Science with Lab 1', 'Science with Lab', 3),
+    ('Intro to Public Speaking', 'COMM 1315', 3),
+    ('Science with Lab 2', 'Science with Lab', 4);  -- Assuming the science course with lab has 4 credit hours
