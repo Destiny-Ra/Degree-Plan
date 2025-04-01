@@ -1,0 +1,257 @@
+/* Base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffe2d2;
+    font-family: Inter, sans-serif;
+  }
+  
+  /* Header styles */
+  .site-header {
+    background: linear-gradient(90deg, #fff 0%, #ff7523 100%);
+    padding: 39px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo-image {
+    width: 445px;
+    height: 118px;
+  }
+  
+  @media (max-width: 991px) {
+    .logo-image {
+      width: 300px;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .logo-image {
+      width: 200px;
+    }
+  }
+  
+  /* Main content styles */
+  .main-content {
+    width: 100%;
+    padding: 20px 37px;
+  }
+  
+  @media (max-width: 640px) {
+    .main-content {
+      padding: 20px 16px;
+    }
+  }
+  
+  /* Navigation bar styles */
+  .navigation-bar {
+    width: 100%;
+    background-color: #000;
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .page-title {
+    color: #fff;
+    font-size: 48px;
+    font-weight: 700;
+  }
+  
+  .nav-actions {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-button {
+    padding: 6px 64px;
+    border-radius: 15px;
+    background-color: #e15503;
+    color: #fff;
+    font-size: 32px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+  }
+  
+  @media (max-width: 991px) {
+    .page-title {
+      font-size: 36px;
+    }
+  
+    .nav-button {
+      font-size: 24px;
+      padding: 6px 48px;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .navigation-bar {
+      flex-direction: column;
+      gap: 20px;
+    }
+  
+    .page-title {
+      font-size: 28px;
+    }
+  
+    .nav-actions {
+      width: 100%;
+    }
+  
+    .nav-button {
+      font-size: 20px;
+      padding: 6px 32px;
+    }
+  }
+  
+  /* Content section styles */
+  .content-section {
+    margin-top: 40px;
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  }
+  
+  .student-greeting {
+    color: #000;
+    font-size: 64px;
+    font-weight: 700;
+    margin-bottom: 40px;
+  }
+  
+  .degree-plan-container {
+    background: linear-gradient(90deg, #ffa570 0%, #ff6810 100%);
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  }
+  
+  .section-title {
+    color: #000;
+    font-size: 64px;
+    font-weight: 700;
+    margin-bottom: 40px;
+  }
+  
+  /* Course table styles */
+  .course-table {
+    background-color: #ffe2d2;
+    border: 2px solid #000;
+  }
+  
+  .table-header,
+  .table-row {
+    display: grid;
+    grid-template-columns: 248px 150px 338px 124px;
+    border: 2px solid #000;
+  }
+  
+  .header-cell,
+  .cell {
+    border: 2px solid #000;
+    height: 66px;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    font-size: 24px;
+    font-weight: 700;
+  }
+  
+  .status-cell {
+    font-size: 48px;
+  }
+  
+  /* Update button styles */
+  .update-section {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  
+  .update-button {
+    background-color: #000;
+    color: #fff;
+    font-size: 32px;
+    font-weight: 700;
+    padding: 13px 49px;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Credit summary styles */
+  .credit-summary {
+    margin-top: 40px;
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 30px;
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 21px;
+    border: 1px solid #000;
+  }
+  
+  .summary-text {
+    color: #000;
+    font-size: 24px;
+    font-weight: 700;
+  }
+  
+  /* Footer styles */
+  .site-footer {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    background-color: #000;
+    margin-top: auto;
+    padding: 56px 282px;
+  }
+  
+  @media (max-width: 991px) {
+    .student-greeting,
+    .section-title {
+      font-size: 48px;
+    }
+  
+    .site-footer {
+      font-size: 20px;
+      padding: 56px 40px;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .content-section,
+    .degree-plan-container {
+      padding: 20px;
+    }
+  
+    .student-greeting,
+    .section-title {
+      font-size: 36px;
+    }
+  
+    .table-header,
+    .table-row {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  
+    .site-footer {
+      font-size: 16px;
+      padding: 56px 20px;
+    }
+  }
+  
