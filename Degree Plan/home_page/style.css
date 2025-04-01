@@ -187,3 +187,29 @@
     font-size: 18px;
   }
 }
+
+
+button.section-title {
+  background: linear-gradient(90deg, #ffa570 0%, #ff6810 100%);
+  border: none;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 48px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: #000;
+  font-family: "Inter", sans-serif;
+  font-size: 64px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Optionally, you can add hover effects for the buttons */
+button.section-title:hover {
+  opacity: 0.9;
+}
+
+button.section-title .section-subtitle {
+  display: block;
+  font-size: 0.75em;
+  margin-top: 8px;
+}
