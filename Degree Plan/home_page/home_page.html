@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>UTPB Degree Plan Dashboard</title>
-    <link rel="stylesheet" href="post_login_page/style.css" />
+    <link rel="stylesheet" href="style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
       rel="stylesheet"
@@ -31,16 +31,22 @@
         <h2 class="student-greeting">Hi StudentName,</h2>
 
         <section class="degree-section">
-          <h3 class="section-title general-education">General Education</h3>
+          <button class="section-title general-education" onclick="location.href='general_education/general_education.html'">
+            General Education
+          </button>
 
-          <div class="combined-section">
-            <h3 class="section-title degree-title">BS in Computer Science</h3>
-            <h4 class="section-subtitle">Math Support Courses</h4>
-          </div>
+          <button class="section-title" onclick="location.href='bs-computer-science.html'">
+            BS in Computer Science
+            <span class="section-subtitle">Math Support Courses</span>
+          </button>
 
-          <h3 class="section-title">Computer Science Track</h3>
+          <button class="section-title" onclick="location.href='computer-science-track.html'">
+            Computer Science Track
+          </button>
 
-          <h3 class="section-title">Math Minor</h3>
+          <button class="section-title" onclick="location.href='math-minor.html'">
+            Math Minor
+          </button>
         </section>
       </main>
 
