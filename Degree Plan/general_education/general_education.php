@@ -21,7 +21,7 @@
       <nav class="navigation-bar">
         <h1 class="page-title">Degree Plan</h1>
         <div class="nav-actions">
-          <button class="nav-button" onclick="location.href='../home_page.html'">Back</button>
+          <button class="nav-button" onclick="location.href='../home_page/home_page.php'">Back</button>
           <button class="nav-button">Logout</button>
         </div>
       </nav>
