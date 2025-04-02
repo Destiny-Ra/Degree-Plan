@@ -59,8 +59,9 @@
     });
 
     Route::run('/');
-?>
 
+// the code below is potentially removable
+?>
 <main>
     <div class="wrapper-main">
         <section class="section-default">

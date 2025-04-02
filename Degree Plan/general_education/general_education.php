@@ -1,3 +1,38 @@
+<?php
+session_start();
+
+// get env variables from .env file
+require '../vendor/autoload.php';
+(Dotenv\Dotenv::createImmutable(__DIR__ . '/../'))->load();
+
+if (!defined('ROUTE_URL_INDEX')) {
+  define('ROUTE_URL_INDEX', rtrim($_ENV['AUTH0_BASE_URL'], '/'));
+}
+if (!defined('ROUTE_URL_LOGIN')) {
+  define('ROUTE_URL_LOGIN', ROUTE_URL_INDEX . '/login');
+}
+if (!defined('ROUTE_URL_LOGOUT')) {
+  define('ROUTE_URL_LOGOUT', ROUTE_URL_INDEX . '/logout');
+}
+
+
+// Check if the user is logged in; if not, redirect to the login route.
+if (!isset($_SESSION['user'])) {
+  header("Location: " . (defined('ROUTE_URL_LOGIN') ? ROUTE_URL_LOGIN : 'index.php'));
+  exit;
+}
+
+// Retrieve the user details needed
+$user = $_SESSION['user'];
+$nickname = $user['nickname'];
+$email = $user['email'];
+
+
+
+
+
+
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -27,7 +62,7 @@
       </nav>
 
       <section class="content-section">
-        <h2 class="student-greeting">Hi StudentName,</h2>
+        <h2 class="student-greeting">Hi <?php echo htmlspecialchars($nickname, ENT_QUOTES, 'UTF-8'); ?>,</h2>
 
         <div class="degree-plan-container">
           <h3 class="section-title">General Education</h3>

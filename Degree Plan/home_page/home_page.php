@@ -1,5 +1,10 @@
 <?php
 session_start();
+
+
+
+
+
 // get env variables from .env file
 require '../vendor/autoload.php';
 (Dotenv\Dotenv::createImmutable(__DIR__ . '/../'))->load();
@@ -16,15 +21,17 @@ if (!defined('ROUTE_URL_LOGOUT')) {
 
 
 
+
 // Check if the user is logged in; if not, redirect to the login route.
 if (!isset($_SESSION['user'])) {
-    header("Location: " . (defined('ROUTE_URL_LOGIN') ? ROUTE_URL_LOGIN : 'login.php'));
+    header("Location: " . (defined('ROUTE_URL_LOGIN') ? ROUTE_URL_LOGIN : 'index.php'));
     exit;
 }
 
-// Retrieve the user object from the session (set in your Auth0 callback).
+// Retrieve the user details needed
 $user = $_SESSION['user'];
-$name = isset($user->name) ? $user->name : 'Student';
+$nickname = $user['nickname'];
+$email = $user['email'];
 
 // Optional: Connect to your database to fetch user-specific courses.
 // (Adjust your DSN, username, and password as needed.)
@@ -41,6 +48,8 @@ try {
     $courses = [];
     // You may want to log $e->getMessage() in a real-world application.
 }
+
+// HTML SECTION BELOW
 ?>
 
 <!doctype html>
@@ -75,7 +84,7 @@ try {
 
       <main class="main-content">
         <!-- Dynamically display the user's name -->
-        <h2 class="student-greeting">Hi <?php echo htmlspecialchars($name); ?>,</h2>
+        <h2 class="student-greeting">Hi <?php echo htmlspecialchars($nickname, ENT_QUOTES, 'UTF-8'); ?>,</h2>
 
         <section class="degree-section">
           <button class="section-title general-education" onclick="location.href='../general_education/general_education.php'">
@@ -95,19 +104,7 @@ try {
             Math Minor
           </button>
         </section>
-
-        <!-- Optional: Display the user's courses if any were retrieved -->
-        <section class="courses-section">
-          <h3>Your Courses</h3>
-          <?php if (!empty($courses)): ?>
-              <ul>
-                  <?php foreach ($courses as $course): ?>
-                      <li><?php echo htmlspecialchars($course['course_name']); ?></li>
-                  <?php endforeach; ?>
-              </ul>
-          <?php else: ?>
-              <p>You have not enrolled in any courses yet.</p>
-          <?php endif; ?>
+          
         </section>
       </main>
 
