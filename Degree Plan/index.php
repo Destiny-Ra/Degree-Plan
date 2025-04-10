@@ -31,9 +31,7 @@
             echo '<p>Please log in using the header link.</p>';
             return;
         }
-        echo '<pre>';
-        print_r($session->user);
-        echo '</pre>';
+        
         echo '<p>You can now <a class="nav-link" href="' . ROUTE_URL_LOGOUT . '">log out</a>.</p>';
     });
 
