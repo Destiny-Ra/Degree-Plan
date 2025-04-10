@@ -50,6 +50,7 @@ INSERT INTO courses (course_code, title, description, credits, course_type) VALU
 ("COSC 3315", "Information Systems and Security", "Computer systems and relationships between hardware and software components. Emphasis on business system design and analysis and information security.", 3, "Comp Sci General"),
 ("COSC 3420", "Data Structures","Design and implementation of algorithms for handling data structures such as linear lists, linked lists, stacks, queues, graphs, trees and strings.", 4, "Comp Sci General"),
 -- Math support courses
+('MATH 2412','Precalculus', 'Preparation for calculus, covering algebraic and trigonometric concepts.', 4, 'Math Support'),
 ("MATH 2413", "Calculus I", "Differentiation of functions of one variable, introduction to integration.", 4, "Math Support"),
 ("MATH 2414", "Calculus II", "Continuation of MATH 2413. Integration of transcendental functions, techniques of integration, sequences and series.", 4, "Math Support"),
 ("MATH 3301", "Introduction to Probability I", "Introduction to probability theory using calculus.  Basic ideas of probability and random variables, discrete probability, functions, continuous probability densities, joint distribution, transformation of random variables, moments and generating functions of random variables, limit theorems.", 3, "Math Support"), 
