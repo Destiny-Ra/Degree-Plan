@@ -12,7 +12,6 @@
         <nav class="nav-header-main">
             <ul>
                 <li><a class="nav-link" href="<?php echo defined('ROUTE_URL_INDEX') ? ROUTE_URL_INDEX : 'index.php'; ?>">Home</a></li>
-                <li><a class="nav-link" href="<?php echo defined('ROUTE_URL_INDEX') ? ROUTE_URL_INDEX . '/portfolio' : '#'; ?>">Portfolio</a></li>
                 <li><a class="nav-link" href="<?php echo defined('ROUTE_URL_INDEX') ? ROUTE_URL_INDEX . '/about' : '#'; ?>">About Me</a></li>
                 <li><a class="nav-link" href="<?php echo defined('ROUTE_URL_INDEX') ? ROUTE_URL_INDEX . '/contact' : '#'; ?>">Contact</a></li>
                 <?php

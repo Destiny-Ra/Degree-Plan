@@ -14,4 +14,4 @@ if ($conn->connect_error) {
 
 echo "Connected to database using MySQLi";
 
-?>
+
