@@ -3,6 +3,8 @@ session_start();
 
 // get env variables from .env file
 require '../vendor/autoload.php';
+require '../includes/db_connection.php';
+
 (Dotenv\Dotenv::createImmutable(__DIR__ . '/../'))->load();
 
 if (!defined('ROUTE_URL_INDEX')) {
@@ -26,6 +28,10 @@ if (!isset($_SESSION['user'])) {
 $user = $_SESSION['user'];
 $nickname = $user['nickname'];
 $email = $user['email'];
+
+
+
+
 
 
 
