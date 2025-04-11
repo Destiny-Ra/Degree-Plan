@@ -1,4 +1,4 @@
---AGAIN VERIFY CREDIT HOURS-- 
+-- AGAIN VERIFY CREDIT HOURS-- 
 
 -- Insert Math and Computer Science Courses
 -- changing all courses to be of type "Math Minor"
