@@ -8,7 +8,7 @@
 
     define('ROUTE_URL_INDEX', rtrim($_ENV['AUTH0_BASE_URL'], '/'));
     define('ROUTE_URL_LOGIN', ROUTE_URL_INDEX . '/login');
-    define('ROUTE_URL_CALLBACK', ROUTE_URL_INDEX . '/callback');
+    define('ROUTE_URL_CALLBACK', ROUTE_URL_INDEX . '/home_page/home_page.php');
     define('ROUTE_URL_LOGOUT', ROUTE_URL_INDEX . '/logout');
 
     // Now include header.php so that it uses the defined constants.

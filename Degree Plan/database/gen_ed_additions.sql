@@ -3,6 +3,9 @@
 -- ALSO NO CORE COMP SCIENCE YET
 
 -- freshman requirement
+
+
+INSERT INTO courses (course_code, title, description, credits, course_type) VALUES
 ('UNIV 1301', 'Honors Freshman Seminar I', 'Introduction to university life, academic skills, and critical thinking.', 3, 'General Ed'),
 -- communication requirement
 ('ENGL 1301', 'Composition I', 'Introduction to composition, focusing on writing processes and academic writing techniques.', 3, 'General Ed'),
@@ -25,7 +28,7 @@
 
 -- changed general science w lab to be 4 seperate courses: the classes themselves and their labs. Also, chose chemistry because it is very popular choice.
 ('CHEM 1311', 'General Chemistry I', 'An introduction to chemistry, fundamentals of atomic structure and bonding, periodic chart, chemical nomenclature, equations and reactions.', 3, 'General Ed'),
-('CHEM 1312', 'General Chemistry II', 'Continuation of Chemistry 1311.  Kinetics, equilibria, thermodynamics, electrochemistry, environmental chemistry, nuclear chemistry, and organic chemistry.', 3, 'General Ed');
-('CHEM 1111', 'General Chemistry Lab I', 'Experiments related to principles and topics covered in CHEM 1311.', 1, 'General Ed');
+('CHEM 1312', 'General Chemistry II', 'Continuation of Chemistry 1311.  Kinetics, equilibria, thermodynamics, electrochemistry, environmental chemistry, nuclear chemistry, and organic chemistry.', 3, 'General Ed'),
+('CHEM 1111', 'General Chemistry Lab I', 'Experiments related to principles and topics covered in CHEM 1311.', 1, 'General Ed'),
 ('CHEM 1112', 'General Chemistry Lab II', 'Experiments related to principles and topics covered in CHEM 1312.', 1, 'General Ed');
 
