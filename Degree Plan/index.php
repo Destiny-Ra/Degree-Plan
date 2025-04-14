@@ -1,5 +1,6 @@
 <?php
     // Start the session, load environment variables, and define Auth0 constants.
+    
     session_start();
 
     
@@ -47,7 +48,7 @@
         if ($credentials !== null) {
             $_SESSION['user'] = $credentials->user;
         }
-        header("Location: " . ROUTE_URL_INDEX);
+        header("Location: " . ROUTE_URL_INDEX) . "/home_page/home_page.php";
         exit;
     });
 
