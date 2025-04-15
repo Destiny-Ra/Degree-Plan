@@ -2,7 +2,7 @@
 
 $servername = "localhost";
 $username = "root"; 
-$password = "$2005Love05$";
+$password = "2005Love05$";
 $databaseName = "courses_database"; 
 
 
