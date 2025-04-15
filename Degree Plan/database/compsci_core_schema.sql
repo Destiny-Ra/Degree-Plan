@@ -1,5 +1,3 @@
--- TEST if database exists, do nothing if it doesn't, if it does, delete it
-DROP DATABASE IF EXISTS courses_database;
 -- CREATE database called courses_database
 CREATE DATABASE courses_database;
 USE courses_database;
