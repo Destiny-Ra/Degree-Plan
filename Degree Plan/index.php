@@ -9,7 +9,7 @@
 
     define('ROUTE_URL_INDEX', rtrim($_ENV['AUTH0_BASE_URL'], '/'));
     define('ROUTE_URL_LOGIN', ROUTE_URL_INDEX . '/login');
-    define('ROUTE_URL_CALLBACK', ROUTE_URL_INDEX . '/home_page/home_page.php');
+    define('ROUTE_URL_CALLBACK', ROUTE_URL_INDEX . '/callback');
     define('ROUTE_URL_LOGOUT', ROUTE_URL_INDEX . '/logout');
 
     // Now include header.php so that it uses the defined constants.
@@ -28,12 +28,6 @@
     // Define Auth0-related routes
     Route::add('/', function() use ($auth0) {
         $session = $auth0->getCredentials();
-        if ($session === null) {
-            echo '<p>Please log in using the header link.</p>';
-            return;
-        }
-        
-        echo '<p>You can now <a class="nav-link" href="' . ROUTE_URL_LOGOUT . '">log out</a>.</p>';
     });
 
     Route::add('/login', function() use ($auth0) {
@@ -48,7 +42,7 @@
         if ($credentials !== null) {
             $_SESSION['user'] = $credentials->user;
         }
-        header("Location: " . ROUTE_URL_INDEX) . "/home_page/home_page.php";
+        header("Location: " . ROUTE_URL_INDEX . "/home_page/home_page.php");
         exit;
     });
 
@@ -60,19 +54,3 @@
     Route::run('/');
 
 // the code below is potentially removable
-?>
-<main>
-    <div class="wrapper-main">
-        <section class="section-default">
-            <?php
-                if(isset($_SESSION['userId'])) {
-                    echo '<p class="login-status">You are logged in!</p>';
-                } else {
-                    echo '<p class="login-status">You are logged out!</p>';
-                }
-            ?>
-        </section>
-    </div>
-</main>
-</body>
-</html>

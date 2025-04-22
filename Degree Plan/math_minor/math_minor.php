@@ -83,10 +83,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_course'])) {
 
 // fill the table with courses from the student_courses joint table or insert into it
 
-$query =  "SELECT sc.enrollment_id, sc.course_id, c.course_code, c.title, c.description, c.credits, sc.semester, sc.year
+$query =  "SELECT sc.enrollment_id, sc.course_id, c.course_code, c.title, c.description, sc.semester, sc.year
 FROM student_courses AS sc
 JOIN courses AS c ON sc.course_id = c.course_id
-WHERE sc.student_id = ? AND c.course_type = 'General Ed'";
+WHERE sc.student_id = ? AND c.course_type = 'Math Minor'";
 
 $courseStmt = $conn->prepare( $query );
 $courseStmt->bind_param("i", $studentId);
@@ -100,7 +100,7 @@ if (isset($_GET['search_query']) && !empty($_GET['search_query'])) {
   $searchTerm = "%" . $_GET['search_query'] . "%";
   $searchStmt = $conn->prepare("SELECT course_id, course_code, title, description, credits, course_type
   FROM courses
-  WHERE course_type = 'General Ed' AND (course_code LIKE ? OR title LIKE ?)");
+  WHERE course_type = 'Math Minor' AND (course_code LIKE ? OR title LIKE ?)");
   $searchStmt->bind_param("ss", $searchTerm, $searchTerm);
   $searchStmt->execute();
   $searchResults = $searchStmt->get_result();
@@ -114,7 +114,7 @@ if (isset($_GET['search_query']) && !empty($_GET['search_query'])) {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>General Education - UTPB Degree Plan</title>
+    <title>Math Minor - UTPB Degree Plan</title>
     <link rel="stylesheet" href="style.css" />
     <script>
       // Toggle the visibility of the search form.
@@ -151,33 +151,29 @@ if (isset($_GET['search_query']) && !empty($_GET['search_query'])) {
       <section class="content-section">
         <h2 class="student-greeting">Hi <?php echo htmlspecialchars($nickname, ENT_QUOTES, 'UTF-8'); ?>,</h2>
         <div class="degree-plan-container">
-          <h3 class="section-title">General Education</h3>
+          <h3 class="section-title">Math Minor</h3>
 
           <!-- Dynamic Course Table -->
           <div class="course-table">
             <div class="table-header">
               <div class="header-cell status-cell"></div>
-              <div class="header-cell">Course Code</div>
-              <div class="header-cell">Course Name</div>
+              <div class="header-cell">Course Number</div>
+              <div class="header-cell">Course</div>
               <div class="header-cell">Credits</div>
-              <div class="header-cell">Semester</div>
-              <div class="header-cell">Year</div>
             </div>
             <?php if ($currentCoursesResult->num_rows > 0): ?>
               <?php while($course = $currentCoursesResult->fetch_assoc()): ?>
                 <div class="table-row">
-                  <div class="cell status-cell">Course</div>
+                  <div class="cell status-cell">Taken</div>
                   <div class="cell"><?php echo htmlspecialchars($course['course_code']); ?></div>
                   <div class="cell"><?php echo htmlspecialchars($course['title']); ?></div>
-                  <div class="cell"><?php echo (int)$course['credits']; ?></div>
-                  <div class="cell"><?php echo htmlspecialchars($course['semester']); ?></div>
-                  <div class="cell"><?php echo (int)$course['year']; ?></div>
+                  <div class="cell"><?php echo htmlspecialchars($course['credits']); ?></div>
                 </div>
               <?php endwhile; ?>
             <?php else: ?>
               <div class="table-row">
                 <div class="cell status-cell">-</div>
-                <div class="cell" style="grid-column: span 3;">No General Ed courses added yet.</div>
+                <div class="cell" style="grid-column: span 3;">No Math Minor courses added yet.</div>
               </div>
             <?php endif; ?>
           </div>
@@ -236,7 +232,7 @@ if (isset($_GET['search_query']) && !empty($_GET['search_query'])) {
           <div class="credit-summary">
             <p class="summary-text">
               Credit Needed : ----<br />
-              Total Credits Required: 42
+              Total : ----
             </p>
           </div>
         </div>
