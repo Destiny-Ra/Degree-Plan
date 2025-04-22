@@ -91,7 +91,7 @@ try {
             General Education
           </button>
 
-          <button class="section-title" onclick="location.href='bs-computer-science.html'">
+          <button class="section-title" onclick="location.href='../bs_math/bs_math.php'">
             BS in Computer Science
             <span class="section-subtitle">Math Support Courses</span>
           </button>
@@ -100,7 +100,7 @@ try {
             Computer Science Track
           </button>
 
-          <button class="section-title" onclick="location.href='math-minor.html'">
+          <button class="section-title" onclick="location.href='../math_minor/math_minor.php'">
             Math Minor
           </button>
         </section>
