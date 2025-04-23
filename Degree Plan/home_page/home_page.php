@@ -96,7 +96,7 @@ try {
             <span class="section-subtitle">Math Support Courses</span>
           </button>
 
-          <button class="section-title" onclick="location.href='computer-science-track.html'">
+          <button class="section-title" onclick="location.href='../track_page/track_page.php'">
             Computer Science Track
           </button>
 

@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_course'])) {
 
 // fill the table with courses from the student_courses joint table or insert into it
 
-$query =  "SELECT sc.enrollment_id, sc.course_id, c.course_code, c.title, c.description, sc.semester, sc.year
+$query =  "SELECT sc.enrollment_id, sc.course_id, c.course_code, c.title, c.description, c.credits, sc.semester, sc.year
 FROM student_courses AS sc
 JOIN courses AS c ON sc.course_id = c.course_id
 WHERE sc.student_id = ? AND c.course_type IN ('Math Support','Comp Sci General')";
@@ -117,15 +117,29 @@ if (isset($_GET['search_query']) && !empty($_GET['search_query'])) {
     <title>Computer Science Core & Math Support- UTPB Degree Plan</title>
     <link rel="stylesheet" href="style.css" />
     <script>
-      // Toggle the visibility of the search form.
-      function toggleSearchForm() {
-        var searchDiv = document.getElementById("searchFormDiv");
-        if (searchDiv.style.display === "none" || searchDiv.style.display === "") {
-          searchDiv.style.display = "block";
+      document.addEventListener('DOMContentLoaded', () => {
+        const searchDiv = document.getElementById('searchFormDiv');
+        // 1. See if they've toggled before
+        const pref = localStorage.getItem('searchFormVisible');
+        if (pref === 'true') {
+          searchDiv.style.display = 'block';
+        } else if (pref === 'false') {
+          searchDiv.style.display = 'none';
         } else {
-          searchDiv.style.display = "none";
+          // 2. No pref yet: open if there's a search_query in the URL
+          const hasQuery = <?php echo isset($_GET['search_query']) ? 'true' : 'false'; ?>;
+          searchDiv.style.display = hasQuery ? 'block' : 'none';
         }
-      }
+    });
+
+    function toggleSearchForm() {
+      const searchDiv = document.getElementById('searchFormDiv');
+      const isOpen = window.getComputedStyle(searchDiv).display !== 'none';
+      // toggle display
+      searchDiv.style.display = isOpen ? 'none' : 'block';
+      // persist choice
+      localStorage.setItem('searchFormVisible', !isOpen);
+    }
     </script>
   </head>
   <body>
@@ -167,7 +181,9 @@ if (isset($_GET['search_query']) && !empty($_GET['search_query'])) {
                   <div class="cell status-cell">Taken</div>
                   <div class="cell"><?php echo htmlspecialchars($course['course_code']); ?></div>
                   <div class="cell"><?php echo htmlspecialchars($course['title']); ?></div>
-                  <div class="cell"><?php echo htmlspecialchars($course['credits']); ?></div>
+                  <div class="cell"><?php echo (int)$course['credits']; ?></div>
+                  <div class="cell"><?php echo htmlspecialchars($course['semester']); ?></div>
+                  <div class="cell"><?php echo (int)$course['year']; ?></div>
                 </div>
               <?php endwhile; ?>
             <?php else: ?>
@@ -184,49 +200,75 @@ if (isset($_GET['search_query']) && !empty($_GET['search_query'])) {
           </div>
 
           <!-- Hidden Search Form for Adding Courses -->
-          <div
-            id="searchFormDiv"
-            style="
-              display: <?php echo isset($_GET['search_query']) ? 'block' : 'none'; ?>;
-              margin-top:20px;
-              padding:10px;
-              "
-            >
+          <div id="searchFormDiv" class="search-section">
+            <!-- 1) Search box (GET) -->
             <form method="GET" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-              <input type="text" name="search_query" placeholder="Enter course title" value="<?php echo isset($_GET['search_query']) ? htmlspecialchars($_GET['search_query']) : ''; ?>" />
-              <button type="submit" class="update-button">Search</button>
+                <input 
+                type="text" 
+                name="search_query" 
+                class="search-control search-control--inverse" 
+                placeholder="Enter course title" 
+                value="<?php echo htmlspecialchars($_GET['search_query'] ?? ''); ?>" 
+                />
+                <button type="submit" class="update-button">Search</button>
             </form>
 
-            <?php if ($searchResults !== null): ?>
-              <?php if ($searchResults->num_rows > 0): ?>
-                <div class="course-table" style="margin-top:20px;">
-                  <div class="table-header">
-                    <div class="header-cell">Course Number</div>
-                    <div class="header-cell">Course</div>
-                    <div class="header-cell">Credits</div>
-                    <div class="header-cell">Action</div>
-                  </div>
-                  <?php while($row = $searchResults->fetch_assoc()): ?>
-                    <div class="table-row">
-                      <div class="cell"><?php echo htmlspecialchars($row['course_code']); ?></div>
-                      <div class="cell"><?php echo htmlspecialchars($row['title']); ?></div>
-                      <div class="cell"><?php echo htmlspecialchars($row['credits']); ?></div>
-                      <div class="cell">
-                        <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                          <input type="hidden" name="course_id" value="<?php echo $row['course_id']; ?>" />
-                          <input type="hidden" name="semester" value="SPRING" />
-                          <input type="hidden" name="year" value="2025" />
-                          <button type="submit" name="add_course" class="update-button">Add</button>
-                        </form>
-                      </div>
-                    </div>
-                  <?php endwhile; ?>
+            <?php if ($searchResults !== null && $searchResults->num_rows > 0): ?>
+              <div class="course-table" style="margin-top:20px;">
+                <div class="table-header">
+                  <div class="header-cell">Course Number</div>
+                  <div class="header-cell">Course</div>
+                  <div class="header-cell">Credits</div>
+                  <div class="header-cell">Semester</div>
+                  <div class="header-cell">Year</div>
+                  <div class="header-cell">Action</div>
                 </div>
-              <?php else: ?>
-                <p>No courses found matching your search.</p>
-              <?php endif; ?>
+
+                <?php while($row = $searchResults->fetch_assoc()): ?>
+                  <form 
+                    method="POST" 
+                    action="<?php echo $_SERVER['PHP_SELF']; ?>" 
+                    class="table-row add-course-form"
+                  >
+                    <!-- hidden course_id -->
+                    <input type="hidden" name="course_id" value="<?php echo $row['course_id']; ?>">
+
+                    <!-- 1) Course Number -->
+                    <div class="cell"><?php echo htmlspecialchars($row['course_code']); ?></div>
+                    <!-- 2) Course Name -->
+                    <div class="cell"><?php echo htmlspecialchars($row['title']); ?></div>
+                    <!-- 3) Credits -->
+                    <div class="cell"><?php echo (int)$row['credits']; ?></div>
+                    <!-- 4) Semester picker -->
+                    <div class="cell">
+                      <select name="semester" class="search-control">
+                        <option value="SPRING">SPRING</option>
+                        <option value="SUMMER">SUMMER</option>
+                        <option value="FALL">FALL</option>
+                      </select>
+                    </div>
+                    <!-- 5) Year input -->
+                    <div class="cell">
+                      <input
+                        type="number"
+                        name="year"
+                        class="search-control"
+                        value="<?php echo date('Y'); ?>"
+                        min="2000"
+                        max="2100"
+                      />
+                    </div>
+                    <!-- 6) Add button -->
+                    <div class="cell">
+                      <button type="submit" name="add_course" class="update-button">Add</button>
+                    </div>
+                  </form>
+                <?php endwhile; ?>
+              </div>
+            <?php elseif ($searchResults !== null): ?>
+              <p>No courses found matching your search.</p>
             <?php endif; ?>
-          </div>
+        </div>
 
           <!-- Credit Summary (Static Display) -->
           <div class="credit-summary">
