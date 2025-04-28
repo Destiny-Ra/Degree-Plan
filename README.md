@@ -10,7 +10,7 @@ The motivation for this project is the unfortunate smoke and mirrors game of fig
 
 ## Implementation
 Firstly, after all necessary tools are downloaded (github package, composer, etc.), create an Auth0 application.
-Then, in the .env file, fill in the required info (client id, client secret, etc.)
+Then, in an .env file, fill in the required info (client id, client secret, etc.)
 Make sure the Allowed Callback URLs are: http://127.0.0.1:3000/callback, http://127.0.0.1:3000/home_page/home_page.php
 Make sure the Allowed Logout URLS are: http://127.0.0.1:3000/logout, http://127.0.0.1:3000
 Finally, make sure the Allowed Web Origins is http://127.0.0.1:3000
