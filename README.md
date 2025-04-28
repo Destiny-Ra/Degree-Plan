@@ -20,3 +20,5 @@ After all this is done, open up MySQL, create a schema with username 'root' and 
 A password is not necessary, but possible, just change the $password variable in the 'db_connection.php' file
 Then, load open all the SQL scripts from the 'database' folder and run each script, starting with 'compsci_core_schema.sql', then 'email_mappings.sql', and then the rest in any order.
 Then, make sure the information is correct on the 'db_connection.php' file, and the application can be used.
+
+Once viable, users will be able to make an account or sign in with an existing account via Auth0 to access the main home page, from there the user will have the ability to add courses to their itinerary based on credit and course requirements.
